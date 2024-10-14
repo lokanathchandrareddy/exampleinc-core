@@ -49,6 +49,12 @@
   const userStore = useUserStore()
   const router = useRouter()
 
+  // Inject the global showSnackbar function
+  const showSnackbar = inject('showSnackbar') as (
+    message: string,
+    color?: string,
+    timeout?: number
+  ) => void
 
   const search = ref('') // Reactive search term
   const loading = ref(false) // Loading state
@@ -101,13 +107,24 @@
       const response = await fetch(`https://jsonplaceholder.typicode.com/users/${user.id}`, {
         method: 'DELETE',
       })
+
       if (!response.ok) {
         throw new Error('Failed to delete the user.')
       }
       // Remove the user from the store for now as we cant do it with API
       userStore.removeUser(user.id)
+
+      // Use the global showSnackbar function to display success message
+      if (showSnackbar) {
+        showSnackbar('User deleted successfully.', 'success')
+      }
     } catch (err) {
       console.error('Error deleting user:', err)
+
+      // Use the global showSnackbar function to display error message
+      if (showSnackbar) {
+        showSnackbar('Error deleting user.', 'error')
+      }
     }
   }
 </script>
