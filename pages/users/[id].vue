@@ -9,25 +9,32 @@
     />
     <template v-else>
       <!-- Example for BreadCrumbs -->
-      <VBreadcrumbs>
-        <VBreadcrumbsItem :to="'/'">Home</VBreadcrumbsItem>
-        <VBreadcrumbsItem :to="'/users'">Users</VBreadcrumbsItem>
-        <VBreadcrumbsItem active>{{ user.name }}</VBreadcrumbsItem>
+      <VBreadcrumbs :items="breadCrumbItems">
+        <template #title="{ item }">
+          {{ item.title === 'user' ? user.name : item.title }}
+        </template>
       </VBreadcrumbs>
-
-      <VCard>
-        <VCardTitle>Edit User Details</VCardTitle>
+      <VCard v-if="user">
+        <v-toolbar
+          class="d-flex justify-space-between align-center font-weight-medium text-h4"
+          color="primary"
+          dark
+          flat
+        >
+          <v-toolbar-title>Edit User Details</v-toolbar-title>
+        </v-toolbar>
 
         <VCardText>
           <VForm ref="form" v-model="valid" @submit.prevent="submit">
             <VTextField v-model="user.name" label="Name" :rules="[rules.required]" required />
             <VTextField v-model="user.email" label="Email" :rules="[rules.email]" required />
             <!-- Add other fields as needed -->
-
-            <VBtn type="submit" :disabled="!valid" color="primary">Save</VBtn>
-            <VBtn text @click="goBack">Cancel</VBtn>
           </VForm>
         </VCardText>
+        <VCardActions class="d-flex justify-end">
+          <VBtn type="submit" :disabled="!valid" color="primary">Save</VBtn>
+          <VBtn text @click="goBack">Cancel</VBtn>
+        </VCardActions>
       </VCard>
     </template>
   </VContainer>
@@ -51,6 +58,24 @@
     email: '',
     phone: '',
   });
+
+  const breadCrumbItems = [
+    {
+      title: 'Home',
+      disabled: false,
+      href: '/',
+    },
+    {
+      title: 'Users',
+      disabled: false,
+      href: '/users',
+    },
+    {
+      title: 'user',
+      disabled: true,
+      href: '',
+    },
+  ];
 
   // Inject the global showSnackbar function
   const showSnackbar = inject('showSnackbar') as (

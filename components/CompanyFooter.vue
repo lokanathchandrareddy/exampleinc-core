@@ -1,13 +1,19 @@
 <template>
-  <VFooter class="pa-3" :height="height" :color="color">
+  <VFooter class="pa-3" :height="props.height" :color="props.color">
     <VContainer>
       <VRow>
         <VCol cols="12" md="6" class="text-center text-md-left">
-          <p>{{ footerText }}</p>
+          <p>{{ props.footerText }}</p>
         </VCol>
         <VCol cols="12" md="6" class="text-center text-md-right">
           <!-- Social Media Links or Custom Content -->
-          <VBtn v-for="link in socialLinks" :key="link.name" icon :href="link.url" target="_blank">
+          <VBtn
+            v-for="link in props.socialLinks"
+            :key="link.name"
+            icon
+            :href="link.url"
+            target="_blank"
+          >
             <VIcon>{{ link.icon }}</VIcon>
           </VBtn>
         </VCol>

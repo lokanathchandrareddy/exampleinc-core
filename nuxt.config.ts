@@ -2,7 +2,7 @@ import { defineNuxtConfig } from 'nuxt/config';
 import vuetify from 'vite-plugin-vuetify';
 
 const title = 'ExampleInc-Core';
-const shortTitle = 'Core App';
+// const shortTitle = 'Core App';
 const description = 'Foundation for Projects';
 
 export default defineNuxtConfig({
@@ -29,7 +29,7 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: 'ExampleInc-Core',
+      title: title,
       titleTemplate: '%s | Foundation for Projects',
       meta: [
         {
@@ -41,5 +41,5 @@ export default defineNuxtConfig({
     },
   },
 
-  compatibilityDate: '2024-10-12',
+  compatibilityDate: '2024-10-14',
 });

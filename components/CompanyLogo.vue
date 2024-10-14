@@ -1,13 +1,13 @@
 <!-- Logo Component for using logo's with similar style at all places and/or use it differently at different places -->
 <template>
-  <div :class="logoClass" class="logo-wrapper">
+  <div :class="props.logoClass" class="logo-wrapper">
     <img
-      :src="src"
-      :alt="alt"
-      :width="width"
-      :height="height"
+      :src="props.src"
+      :alt="props.alt"
+      :width="props.width"
+      :height="props.height"
       class="logo-image"
-      :style="logoStyle"
+      :style="props.logoStyle"
     />
   </div>
 </template>
