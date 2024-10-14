@@ -1,5 +1,5 @@
 <template>
-  <VFooter class="pa-3" :height="props.height" :color="props.color">
+  <VFooter inset app absolute class="pa-3" :color="props.color">
     <VContainer>
       <VRow>
         <VCol cols="12" md="6" class="text-center text-md-left">

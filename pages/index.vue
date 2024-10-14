@@ -1,5 +1,8 @@
 <template>
-  <div class="text-center">
-    <h1>Welcome to My App</h1>
-  </div>
+  <!-- Replace this component with Landing Page/component -->
+  <WelcomeLanding /> 
 </template>
+<script lang="ts">
+import WelcomeLanding from '~/components/WelcomeLanding.vue';
+
+</script>
