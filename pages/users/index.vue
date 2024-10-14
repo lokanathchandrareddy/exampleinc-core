@@ -19,11 +19,15 @@
               :sort-desc="sortDesc"
               :loading="loading"
               search-placeholder="Search By Name"
+              :delete-dialog-title="'Confirm User Deletion'"
+              :delete-dialog-text="`Are you sure you want to delete ${userToDelete?.name}?`"
               title="Users List"
               :use-search="true"
               @update:sort-by="(val: any) => (sortBy = val)"
               @update:sort-desc="(val: any) => (sortDesc = val)"
               @update:search="(val: any) => (search = val)"
+              @edit="editUser"
+              @delete="deleteUser"
             >
               <template #item.name="{ item }">
                 <v-chip color="primary" dark>{{ item.name }}</v-chip>
@@ -45,15 +49,10 @@
   const userStore = useUserStore()
   const router = useRouter()
 
-  // Inject the global showSnackbar function
-  const showSnackbar = inject('showSnackbar') as (
-    message: string,
-    color?: string,
-    timeout?: number
-  ) => void
 
   const search = ref('') // Reactive search term
   const loading = ref(false) // Loading state
+  const userToDelete = ref(null) // For tracking user to be deleted
   const sortBy = ref(['name']) // Default sorting by name
   const sortDesc = ref([false]) // Default ascending sort
 
@@ -90,5 +89,25 @@
     return users.value.filter(user => user.name.toLowerCase().includes(search.value.toLowerCase()))
   })
 
+  // Navigate to user detail page for editing
+  const editUser = (user: User) => {
+    console.log('Navigating to edit user:', user)
+    router.push(`/users/${user.id}`) // Navigate to /users/[id].vue for editing
+  }
 
+  // Handle delete action from CompanyDataTable
+  const deleteUser = async (user: User) => {
+    try {
+      const response = await fetch(`https://jsonplaceholder.typicode.com/users/${user.id}`, {
+        method: 'DELETE',
+      })
+      if (!response.ok) {
+        throw new Error('Failed to delete the user.')
+      }
+      // Remove the user from the store for now as we cant do it with API
+      userStore.removeUser(user.id)
+    } catch (err) {
+      console.error('Error deleting user:', err)
+    }
+  }
 </script>
