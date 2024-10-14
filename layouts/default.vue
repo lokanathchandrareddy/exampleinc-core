@@ -7,9 +7,14 @@
         {{ snackbar.message }}
       </v-snackbar>
     </VMain>
-    <VFooter>
-      <!--footer content -->
-    </VFooter>
+
+    <CompanyFooter
+      footerText="© 2024 Example Inc. All rights reserved."
+      color="primary"
+      :socialLinks="[
+        { name: 'GitHub', url: 'https://github.com', icon: 'mdi-github' }
+      ]"
+    />
   </VApp>
 </template>
 
@@ -17,6 +22,7 @@
   import { VApp } from 'vuetify/components'
   import { ref, provide } from 'vue'
   import NavBar from '~/components/NavBar.vue'
+  import CompanyFooter from '~/components/CompanyFooter.vue'
 
 
   const snackbar = ref({
