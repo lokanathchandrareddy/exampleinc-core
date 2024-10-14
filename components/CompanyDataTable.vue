@@ -1,10 +1,11 @@
 <template>
-  <VCard class="pa-4">
-    <VCardTitle>{{ title }}</VCardTitle>
+  <VCard class="pa-6 table-card">
+    <VCardTitle class="mb-4 table-title">{{ title }}</VCardTitle>
 
     <!-- Conditionally Render the Search Field -->
     <template v-if="useSearch">
       <v-text-field
+      class="mb-4"
         v-model="internalSearch"
         :label="searchLabel"
         :placeholder="searchPlaceholder"
@@ -23,20 +24,32 @@
       :search="internalSearch"
       :sort-by="sortBy"
       :sort-desc="sortDesc"
-      class="elevation-1"
+      class="ex-table elevation-1"
       :item-key="itemKey"
       :loading="loading"
       @update:sort-by="updateSortBy"
       @update:sort-desc="updateSortDesc"
     >
       <!-- we can add slots here to additional customization -->
-      <!-- Actions Slot -->
+      <!-- Actions Slot with Tooltips -->
       <template #item.actions="{ item }">
-        <slot name="item.actions" :item="item">
-          <!-- Default Actions -->
-          <VIcon small class="mr-2" aria-label="Edit" @click="editItem(item)"> mdi-pencil </VIcon>
-          <VIcon small aria-label="Delete" @click="deleteItem(item)"> mdi-delete </VIcon>
-        </slot>
+        <v-tooltip location="bottom">
+          <template #activator="{ props }">
+            <v-icon small class="mr-2" aria-label="Edit" v-bind="props" @click="editItem(item)">
+              mdi-pencil
+            </v-icon>
+          </template>
+          <span>Edit</span>
+        </v-tooltip>
+
+        <v-tooltip location="bottom">
+          <template #activator="{ props }">
+            <v-icon small aria-label="Delete" v-bind="props" @click="deleteItem(item)">
+              mdi-delete
+            </v-icon>
+          </template>
+          <span>Delete</span>
+        </v-tooltip>
       </template>
     </VDataTable>
 
@@ -175,3 +188,57 @@
     return [...props.headers, { title: 'Actions', value: 'actions', sortable: false }];
   });
 </script>
+<style scoped>
+/* Simple Example Inc(ex) branding and styling for the data table */
+
+/* Card Styling */
+.table-card {
+  border-radius: 12px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: white; /* Light background for the card */
+}
+
+.table-title {
+  font-weight: 600;
+  font-size: 20px;
+  color: #333; /* Dark text color for emphasis */
+}
+
+:deep(.v-table__wrapper > table > tbody > tr:hover) {
+  background-color: #e1f2f4 !important;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+/* Data Table Branding */
+:deep(.ex-table thead th) {
+  background-color: #f5f5f5; /* Light grey background for headers */
+  color: #1976D2; /* Brand color for header text */
+  font-weight: 800;
+  padding: 12px 16px; /* Consistent padding */
+}
+
+/* Alternate row color for even rows */
+:deep(.ex-table tbody tr:nth-child(even)) {
+  background-color: #f9f9f9; /* Light grey alternating row color */
+}
+
+/* Subtle hover effect */
+:deep(.ex-table tbody tr:hover) {
+  background-color: #f0f0f0; /* Subtle hover effect */
+}
+
+/* Apply padding and text color to table cells */
+:deep(.ex-table tbody td) {
+  padding: 12px 16px;
+  font-size: 16px;
+  color: #555; /* Text color for table rows */
+}
+
+/* Align header content (for sortable headers) */
+:deep(.ex-table .header-cell) {
+  display: flex;
+  align-items: center;
+}
+</style>
