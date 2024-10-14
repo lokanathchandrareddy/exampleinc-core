@@ -32,7 +32,7 @@
           </VForm>
         </VCardText>
         <VCardActions class="d-flex justify-end">
-          <VBtn type="submit" :disabled="!valid" color="primary">Save</VBtn>
+          <VBtn type="submit" @click="sub" :disabled="!valid" color="primary">Save</VBtn>
           <VBtn text @click="goBack">Cancel</VBtn>
         </VCardActions>
       </VCard>
