@@ -390,7 +390,7 @@ Unit tests are written using **Vitest** and are located in the `tests/` director
 ## Next Iterations
 
 In the upcoming iterations, we plan to enhance the application with the following features:
-
+- **Fix Bugs**: Debug and update Darkmode colors for better UI and fix sorting in the table
 - **Pagination Implementation**: Add pagination to `CompanyDataTable.vue` with server-side data loading to efficiently handle larger datasets.
 - **Form Validation**: Implement robust form validation using VeeValidate or a similar library to ensure data integrity.
 - **Comprehensive Unit Testing**: Expand unit test coverage for all components and stores to improve code reliability.
