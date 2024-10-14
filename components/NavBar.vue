@@ -1,5 +1,6 @@
 <template>
   <VAppBar color="primary" dark>
+    <CompanyLogo src="/ex-initial-logo.svg" alt="My App Logo" width="100" height="auto" />
     <VToolbarTitle>Starter Template with State Management</VToolbarTitle>
     <VSpacer />
     <!-- Light/Dark Mode Toggle Button -->
@@ -12,6 +13,7 @@
 </template>
 <script setup lang="ts">
   import { useTheme } from 'vuetify'
+  import CompanyLogo from '~/components/CompanyLogo.vue'
 
   // Access the Vuetify theme system
   const theme = useTheme()
