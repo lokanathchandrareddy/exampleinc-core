@@ -9,28 +9,25 @@
     </VMain>
 
     <CompanyFooter
-      footerText="© 2024 Example Inc. All rights reserved."
+      footer-text="© 2024 Example Inc. All rights reserved."
       color="primary"
-      :socialLinks="[
-        { name: 'GitHub', url: 'https://github.com', icon: 'mdi-github' }
-      ]"
+      :social-links="[{ name: 'GitHub', url: 'https://github.com', icon: 'mdi-github' }]"
     />
   </VApp>
 </template>
 
 <script setup lang="ts">
-  import { VApp } from 'vuetify/components'
-  import { ref, provide } from 'vue'
-  import NavBar from '~/components/NavBar.vue'
-  import CompanyFooter from '~/components/CompanyFooter.vue'
-
+  import { VApp } from 'vuetify/components';
+  import { ref, provide } from 'vue';
+  import NavBar from '~/components/NavBar.vue';
+  import CompanyFooter from '~/components/CompanyFooter.vue';
 
   const snackbar = ref({
     show: false,
     message: '',
     color: 'success',
     timeout: 3000,
-  })
+  });
 
   // Method to show snackbar
   const showSnackbar = (message: string, color = 'success', timeout = 3000) => {
@@ -39,9 +36,9 @@
       message,
       color,
       timeout,
-    }
-  }
+    };
+  };
 
   // Provide the showSnackbar method globally so any component can use it
-  provide('showSnackbar', showSnackbar)
+  provide('showSnackbar', showSnackbar);
 </script>

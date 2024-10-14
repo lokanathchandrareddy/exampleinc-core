@@ -56,7 +56,7 @@
   </VCard>
 </template>
 <script setup lang="ts">
-  import { ref, computed, defineEmits, defineProps, watch } from 'vue'
+  import { ref, computed, defineEmits, defineProps, watch } from 'vue';
 
   const props = defineProps({
     items: {
@@ -111,61 +111,67 @@
       type: String,
       default: '', // Accept the search term from the parent
     },
-  })
+  });
 
-  const emits = defineEmits(['update:sortBy', 'update:sortDesc', 'update:search', 'edit', 'delete'])
+  const emits = defineEmits([
+    'update:sortBy',
+    'update:sortDesc',
+    'update:search',
+    'edit',
+    'delete',
+  ]);
 
   // Internal Search State
-  const internalSearch = ref(props.search)
+  const internalSearch = ref(props.search);
 
   // Watch the search prop to keep internalSearch in sync
   watch(
     () => props.search,
     newVal => {
-      internalSearch.value = newVal
+      internalSearch.value = newVal;
     }
-  )
+  );
 
   // Emit search event to parent when search input changes
   const updateSearch = searchValue => {
-    emits('update:search', searchValue)
-  }
+    emits('update:search', searchValue);
+  };
 
   // Handle sorting updates
   const updateSortBy = value => {
-    emits('update:sortBy', value)
-  }
+    emits('update:sortBy', value);
+  };
 
   const updateSortDesc = value => {
-    emits('update:sortDesc', value)
-  }
+    emits('update:sortDesc', value);
+  };
 
   // Actions for edit and delete
-  const dialogDelete = ref(false)
-  const itemToDelete = ref(null)
+  const dialogDelete = ref(false);
+  const itemToDelete = ref(null);
 
   const editItem = (item: any) => {
-    emits('edit', item)
-  }
+    emits('edit', item);
+  };
 
   const deleteItem = (item: any) => {
-    itemToDelete.value = item
-    dialogDelete.value = true
-  }
+    itemToDelete.value = item;
+    dialogDelete.value = true;
+  };
 
   const confirmDelete = () => {
-    emits('delete', itemToDelete.value)
-    dialogDelete.value = false
-    itemToDelete.value = null
-  }
+    emits('delete', itemToDelete.value);
+    dialogDelete.value = false;
+    itemToDelete.value = null;
+  };
 
   const cancelDelete = () => {
-    dialogDelete.value = false
-    itemToDelete.value = null
-  }
+    dialogDelete.value = false;
+    itemToDelete.value = null;
+  };
 
   // Headers with Actions column
   const headersWithActions = computed(() => {
-    return [...props.headers, { title: 'Actions', value: 'actions', sortable: false }]
-  })
+    return [...props.headers, { title: 'Actions', value: 'actions', sortable: false }];
+  });
 </script>

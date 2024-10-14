@@ -1,20 +1,20 @@
 <!-- Logo Component for using logo's with similar style at all places and/or use it differently at different places -->
 <template>
-    <div :class="logoClass" class="logo-wrapper">
-      <img
-        :src="src"
-        :alt="alt"
-        :width="width"
-        :height="height"
-        class="logo-image"
-        :style="logoStyle"
-      />
-    </div>
-  </template>
-  
-  <script setup lang="ts">
-  import { defineProps } from 'vue'
-  
+  <div :class="logoClass" class="logo-wrapper">
+    <img
+      :src="src"
+      :alt="alt"
+      :width="width"
+      :height="height"
+      class="logo-image"
+      :style="logoStyle"
+    />
+  </div>
+</template>
+
+<script setup lang="ts">
+  import { defineProps } from 'vue';
+
   // Define props to customize the logo
   const props = defineProps({
     src: {
@@ -41,19 +41,18 @@
       type: Object,
       default: () => ({}), // Optional style object
     },
-  })
-  </script>
-  
-  <style scoped>
+  });
+</script>
+
+<style scoped>
   /* Add any scoped styles for the logo */
   .logo-wrapper {
     display: inline-flex;
     align-items: center;
   }
-  
+
   .logo-image {
     max-width: 100%;
     height: auto;
   }
-  </style>
-  
+</style>

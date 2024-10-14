@@ -1,10 +1,10 @@
-import { createVuetify } from 'vuetify'
-import { aliases, mdi } from 'vuetify/iconsets/mdi' // Use mdi-svg for SVG icons
-import * as components from 'vuetify/components'
-import * as directives from 'vuetify/directives'
+import { createVuetify } from 'vuetify';
+import { aliases, mdi } from 'vuetify/iconsets/mdi'; // Use mdi-svg for SVG icons
+import * as components from 'vuetify/components';
+import * as directives from 'vuetify/directives';
 
-import 'vuetify/styles' // Vuetify styles
-import '@mdi/font/css/materialdesignicons.css' // Ensure you import the CSS
+import 'vuetify/styles'; // Vuetify styles
+import '@mdi/font/css/materialdesignicons.css'; // Ensure you import the CSS
 
 export default defineNuxtPlugin(app => {
   const vuetify = createVuetify({
@@ -45,6 +45,6 @@ export default defineNuxtPlugin(app => {
         },
       },
     },
-  })
-  app.vueApp.use(vuetify)
-})
+  });
+  app.vueApp.use(vuetify);
+});

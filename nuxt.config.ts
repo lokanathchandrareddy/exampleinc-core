@@ -1,9 +1,9 @@
 import { defineNuxtConfig } from 'nuxt/config';
 import vuetify from 'vite-plugin-vuetify';
 
-const title = "ExampleInc-Core";
-const shortTitle = "Core App";
-const description = "Foundation for Projects";
+const title = 'ExampleInc-Core';
+const shortTitle = 'Core App';
+const description = 'Foundation for Projects';
 
 export default defineNuxtConfig({
   modules: [
@@ -29,12 +29,12 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: "ExampleInc-Core",
-      titleTemplate: "%s | Foundation for Projects",
+      title: 'ExampleInc-Core',
+      titleTemplate: '%s | Foundation for Projects',
       meta: [
         {
-          hid: "",
-          name: "",
+          hid: '',
+          name: '',
           content: description,
         },
       ],

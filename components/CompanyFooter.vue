@@ -17,42 +17,40 @@
 </template>
 
 <script setup lang="ts">
-import { defineProps } from 'vue'
-import { VContainer, VRow } from 'vuetify/components';
+  import { defineProps } from 'vue';
+  import { VContainer, VRow } from 'vuetify/components';
 
-const props = defineProps({
-  footerText: {
-    type: String,
-    default: '© 2024 Example Inc. All rights reserved.',
-  },
-  color: {
-    type: String,
-    default: 'primary',
-  },
-  height: {
-    type: String,
-    default: 'auto',
-  },
-  socialLinks: {
-    type: Array,
-    default: () => [
-      { name: 'GitHub', url: 'https://github.com', icon: 'mdi-github' },
-    ],
-  },
-})
+  const props = defineProps({
+    footerText: {
+      type: String,
+      default: '© 2024 Example Inc. All rights reserved.',
+    },
+    color: {
+      type: String,
+      default: 'primary',
+    },
+    height: {
+      type: String,
+      default: 'auto',
+    },
+    socialLinks: {
+      type: Array,
+      default: () => [{ name: 'GitHub', url: 'https://github.com', icon: 'mdi-github' }],
+    },
+  });
 </script>
 
 <style scoped>
-/* Basic styles for the footer */
-.text-center {
-  text-align: center;
-}
+  /* Basic styles for the footer */
+  .text-center {
+    text-align: center;
+  }
 
-.text-md-left {
-  text-align: left;
-}
+  .text-md-left {
+    text-align: left;
+  }
 
-.text-md-right {
-  text-align: right;
-}
+  .text-md-right {
+    text-align: right;
+  }
 </style>

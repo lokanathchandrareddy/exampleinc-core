@@ -34,56 +34,56 @@
 </template>
 
 <script setup lang="ts">
-  import { ref, onMounted, inject } from 'vue'
-  import { useUserStore } from '~/stores/userStore'
-  import type { User } from '~/types/User'
+  import { ref, onMounted, inject } from 'vue';
+  import { useUserStore } from '~/stores/userStore';
+  import type { User } from '~/types/User';
 
-  const route = useRoute() // Get the user ID from the URL
-  const router = useRouter() // To navigate back to the users list after editing
-  const userStore = useUserStore() // Reference to the user store
-  const valid = ref(false)
-  const loading = ref(false)
-  const form = ref<InstanceType<typeof form> | null>(null)
+  const route = useRoute(); // Get the user ID from the URL
+  const router = useRouter(); // To navigate back to the users list after editing
+  const userStore = useUserStore(); // Reference to the user store
+  const valid = ref(false);
+  const loading = ref(false);
+  const form = ref<InstanceType<typeof form> | null>(null);
   const user = ref<User>({
     id: 0,
     name: '',
     username: '',
     email: '',
     phone: '',
-  })
+  });
 
   // Inject the global showSnackbar function
   const showSnackbar = inject('showSnackbar') as (
     message: string,
     color?: string,
     timeout?: number
-  ) => void
+  ) => void;
 
   // Form validation rules
   const rules = {
     required: (value: string) => !!value || 'Required.',
     email: (value: string) => /.+@.+\..+/.test(value) || 'E-mail must be valid.',
-  }
+  };
 
   // Fetch the user when the component is mounted
   onMounted(async () => {
-    loading.value = true
-    const userId = route.params.id as string
+    loading.value = true;
+    const userId = route.params.id as string;
     try {
-      await userStore.fetchUser(userId) // Fetch the user from the store or API
+      await userStore.fetchUser(userId); // Fetch the user from the store or API
       if (userStore.user) {
-        user.value = { ...userStore.user } // Set the user data for the form
+        user.value = { ...userStore.user }; // Set the user data for the form
       }
     } catch (err) {
       // Show an error snackbar if fetching the user fails
       if (showSnackbar) {
-        showSnackbar('Failed to load user data.', 'error')
-        console.error('Failed to load user data', err)
+        showSnackbar('Failed to load user data.', 'error');
+        console.error('Failed to load user data', err);
       }
     } finally {
-      loading.value = false // Stop loading after fetch is done
+      loading.value = false; // Stop loading after fetch is done
     }
-  })
+  });
 
   // Function to handle form submission
   const submit = async () => {
@@ -99,34 +99,34 @@
               'Content-Type': 'application/json',
             },
           }
-        )
+        );
 
         if (!response.ok) {
-          throw new Error('Failed to update user.')
+          throw new Error('Failed to update user.');
         }
 
         // Optionally update the user in the store
-        userStore.updateUser(user.value)
+        userStore.updateUser(user.value);
         // Show success snackbar
         if (showSnackbar) {
-          showSnackbar('User updated successfully!', 'success')
+          showSnackbar('User updated successfully!', 'success');
         }
         // Navigate back to the users list
-        router.push('/users')
+        router.push('/users');
       } catch (error) {
-        console.error('Error updating user:', error)
+        console.error('Error updating user:', error);
         // Show error snackbar
         if (showSnackbar) {
-          showSnackbar('Failed to update user.', 'error')
+          showSnackbar('Failed to update user.', 'error');
         }
       }
     }
-  }
+  };
 
   // Function to navigate back to the users list without saving
   const goBack = () => {
-    router.push('/users')
-  }
+    router.push('/users');
+  };
 </script>
 
 <style scoped>
