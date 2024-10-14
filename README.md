@@ -39,20 +39,25 @@ Welcome to the **Application Foundation** for Example Inc.! This project serves 
 
 ### Prerequisites
 
-Before you begin, ensure you have the following installed:
-
-- **Node.js** (v14 or higher)
-- **Yarn** (recommended) or **npm**
+- **Node.js**: Ensure you have Node.js (version 20 or above) installed. Use NVM for installation ([Node.js on Windows](https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows)) https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows)
+- **NPM or Yarn**: Package manager for installing dependencies.
 
 ### Installation
 
-Clone the repository and install the dependencies:
+1. **Clone the Repository**
 
-```bash
-git clone https://github.com/lokanathchandrareddy/exampleinc-core.git
-cd exampleinc-core
-npm install
-```
+   ```bash
+   git clone https://github.com/lokanathchandrareddy/exampleinc-core.git
+   cd exampleinc-core
+   ```
+
+2. **Install Dependencies**
+   Make sure Node v20 is installed. If not, please refer to the document.
+
+   ```bash
+   # Using npm
+   npm install
+   ```
 
 ### Running the Application
 
